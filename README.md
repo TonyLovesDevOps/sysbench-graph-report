@@ -42,14 +42,50 @@ pip3 install pandas plotly
    - Placez vos fichiers `.log` dans le même répertoire que le script ou modifiez la variable `LOG_DIR` pour spécifier un autre répertoire.
 
 2. **Exécution du Script :**
+
+   - placer vos fichier de log de sysbench sous ce format :
+  
+     ```bash
+      oltp_update_non_index  ## attention changer par le oltp testé
+      SQL statistics:
+          queries performed:
+              read:                            0
+              write:                           68
+              other:                           865
+              total:                           933
+          transactions:                        933    (15.55 per sec.)
+          queries:                             933    (15.55 per sec.)
+          ignored errors:                      0      (0.00 per sec.)
+          reconnects:                          0      (0.00 per sec.)
+      
+      Throughput:
+          events/s (eps):                      15.5477
+          time elapsed:                        60.0088s
+          total number of events:              933
+      
+      Latency (ms):
+               min:                                   58.99
+               avg:                                   64.31
+               max:                                  223.48
+               95th percentile:                       78.60
+               sum:                                60000.52
+      
+      Threads fairness:
+          events (avg/stddev):           933.0000/0.00
+          execution time (avg/stddev):   60.0005/0.00
+     ```
+
    - Lancez le script en utilisant la commande suivante :
      ```bash
      ./votre_script.py
      ```
    - Un fichier `data_extracted.csv` sera généré avec les données extraites.
-
-3. **Génération du Rapport :**
+  
+     
+4. **Génération du Rapport :**
    - Le script produit également un fichier `report.html` contenant un rapport interactif avec des graphiques. Vous pouvez l'ouvrir directement dans votre navigateur préféré.
+
+  ![]([https://i.imgur.com/LWrLXMW.png](https://i.imgur.com/T2ts60J.png))
 
 ## ⚙️ Personnalisation
 
