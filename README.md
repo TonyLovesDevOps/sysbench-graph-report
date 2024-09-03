@@ -1,5 +1,3 @@
-# sysbench-graph-report
-sysbench with graph reporting HTML
 
 # 📊 Rapport de Benchmark - Analyse Automatisée des Fichiers de Log
 
@@ -18,7 +16,7 @@ Ce projet propose un script Python permettant d'analyser automatiquement des fic
 
 - **Rapport HTML :**
   - Compile tous les graphiques dans un rapport HTML prêt à être consulté dans un navigateur.
- 
+
 ## 🛠️ Prérequis
 
 Avant d'exécuter le script, assurez-vous d'avoir installé :
@@ -28,11 +26,30 @@ Avant d'exécuter le script, assurez-vous d'avoir installé :
   - `pandas` pour la manipulation des données.
   - `plotly` pour la génération des graphiques interactifs.
 
-Installation des bibliothèques nécessaires :
-
 ```bash
 pip3 install pandas plotly
 ```
+
+## 📂 Structure du Répertoire
+
+- `votre_script.py` : Le script principal pour l'extraction et l'analyse.
+- `data_extracted.csv` : Fichier CSV généré contenant les données extraites.
+- `report.html` : Rapport HTML interactif avec les graphiques pour chaque type de charge.
+
+## 📝 Instructions d'Utilisation
+
+1. **Préparation :**
+   - Placez vos fichiers `.log` dans le même répertoire que le script ou modifiez la variable `LOG_DIR` pour spécifier un autre répertoire.
+
+2. **Exécution du Script :**
+   - Lancez le script en utilisant la commande suivante :
+     ```bash
+     ./votre_script.py
+     ```
+   - Un fichier `data_extracted.csv` sera généré avec les données extraites.
+
+3. **Génération du Rapport :**
+   - Le script produit également un fichier `report.html` contenant un rapport interactif avec des graphiques. Vous pouvez l'ouvrir directement dans votre navigateur préféré.
 
 ## ⚙️ Personnalisation
 
