@@ -85,7 +85,7 @@ pip3 install pandas plotly
 4. **Génération du Rapport :**
    - Le script produit également un fichier `report.html` contenant un rapport interactif avec des graphiques. Vous pouvez l'ouvrir directement dans votre navigateur préféré.
 
-  ![]([https://i.imgur.com/LWrLXMW.png](https://i.imgur.com/T2ts60J.png))
+![](https://i.imgur.com/T2ts60J.png)
 
 ## ⚙️ Personnalisation
 
