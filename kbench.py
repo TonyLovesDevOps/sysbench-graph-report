@@ -6,21 +6,21 @@ import glob
 import re
 import os
 
-# Répertoire contenant les fichiers .log
+# Directory containing the .log files
 LOG_DIR = "./"
 
-# Fonction pour nettoyer les noms de fichiers
+# Function to sanitize filenames
 def sanitize_filename(filename):
-    # Remplacer les caractères non alphanumériques par des underscores
+    # Replace non-alphanumeric characters with underscores
     return re.sub(r'[<>:"/\\|?*\x00-\x1F]', '_', filename)
 
-# Initialiser une liste pour stocker les données extraites
+# Initialize a list to store extracted data
 data = []
 
-# Lire tous les fichiers .log dans le répertoire spécifié
+# Read all .log files in the specified directory
 for file_path in glob.glob(f"{LOG_DIR}/*.log"):
     with open(file_path, 'r') as file:
-        # Lire la première ligne pour déterminer le type de charge
+        # Read the first line to determine the load type
         first_line = file.readline().strip()
         
         if 'oltp_read_only' in first_line:
@@ -40,7 +40,7 @@ for file_path in glob.glob(f"{LOG_DIR}/*.log"):
 
         content = file.read()
 
-        # Extraire les valeurs nécessaires à l'aide de regex
+        # Extract necessary values using regex
         total_queries = re.search(r'total:\s+(\d+)', content)
         transactions = re.search(r'transactions:\s+(\d+)', content)
         queries_read = re.search(r'read:\s+(\d+)', content)
@@ -53,10 +53,10 @@ for file_path in glob.glob(f"{LOG_DIR}/*.log"):
         percentile_95 = re.search(r'95th percentile:\s+([\d.]+)', content)
         sum_latency = re.search(r'sum:\s+([\d.]+)', content)
 
-        # Stocker les données extraites dans une liste
+        # Store the extracted data in a list
         data.append({
-            'Fichier': file_path.split('/')[-1],
-            'Type de Charge': load_type,
+            'File': file_path.split('/')[-1],
+            'Load Type': load_type,
             'Total Queries': float(total_queries.group(1)) if total_queries else float('nan'),
             'Transactions': float(transactions.group(1)) if transactions else float('nan'),
             'Queries Read': float(queries_read.group(1)) if queries_read else float('nan'),
@@ -70,18 +70,18 @@ for file_path in glob.glob(f"{LOG_DIR}/*.log"):
             'Sum Latency': float(sum_latency.group(1)) if sum_latency else float('nan')
         })
 
-# Convertir les données en DataFrame pandas
+# Convert the data to a pandas DataFrame
 df = pd.DataFrame(data)
 
-# Sauvegarder les données extraites dans un fichier CSV
+# Save the extracted data to a CSV file
 df.to_csv('data_extracted.csv', index=False)
 
-# Créer des graphiques pour chaque type de charge
-types_of_load = df['Type de Charge'].unique()
+# Create graphs for each load type
+types_of_load = df['Load Type'].unique()
 graph_files = []
 
 for load_type in types_of_load:
-    df_load_type = df[df['Type de Charge'] == load_type]
+    df_load_type = df[df['Load Type'] == load_type]
     fig = go.Figure()
 
     metrics = [
@@ -97,7 +97,7 @@ for load_type in types_of_load:
 
     for metric, title in metrics:
         fig.add_trace(go.Bar(
-            x=df_load_type['Fichier'],
+            x=df_load_type['File'],
             y=df_load_type[metric],
             name=title,
             text=df_load_type[metric],
@@ -105,28 +105,28 @@ for load_type in types_of_load:
         ))
 
     fig.update_layout(
-        title=f'Comparaison des Métriques pour {load_type}',
-        xaxis_title='Fichier',
-        yaxis_title='Valeur',
+        title=f'Comparison of Metrics for {load_type}',
+        xaxis_title='File',
+        yaxis_title='Value',
         barmode='group',
         bargap=0.1,
         xaxis_tickangle=-45,
         margin=dict(l=50, r=50, t=50, b=50)
     )
 
-    # Sauvegarder chaque graphique en HTML
+    # Save each graph as HTML
     graph_file = f'{sanitize_filename(load_type)}.html'
     fig.write_html(graph_file)
     graph_files.append(graph_file)
 
-# Création du rapport HTML avec descriptions
+# Create the HTML report with descriptions
 html_content = """
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rapport de Benchmark</title>
+    <title>Benchmark Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -157,18 +157,18 @@ html_content = """
     </style>
 </head>
 <body>
-    <h1>Rapport de Benchmark</h1>
+    <h1>Benchmark Report</h1>
     <div class="summary">
-        <h2>Résumé</h2>
-        <p>Ce rapport présente les résultats des benchmarks extraits des fichiers de log, regroupés par type de charge. Les graphiques ci-dessous montrent la comparaison des différentes métriques pour chaque type de charge.</p>
+        <h2>Summary</h2>
+        <p>This report presents the benchmark results extracted from log files, grouped by load type. The graphs below show the comparison of different metrics[...]
     </div>
 """
 
-# Ajouter des graphiques pour chaque type de charge
+# Add graphs for each load type
 for graph_file in graph_files:
     html_content += f"""
     <div class="section">
-        <h2>Graphique pour {sanitize_filename(graph_file).replace('.html', '')}</h2>
+        <h2>Graph for {sanitize_filename(graph_file).replace('.html', '')}</h2>
         <div class="chart-container">
             <iframe src="{graph_file}"></iframe>
         </div>
@@ -180,8 +180,8 @@ html_content += """
 </html>
 """
 
-# Sauvegarder le rapport HTML
+# Save the HTML report
 with open('report.html', 'w') as f:
     f.write(html_content)
 
-print("Rapport HTML généré : report.html")
+print("HTML report generated: report.html")
