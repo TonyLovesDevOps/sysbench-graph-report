@@ -1,52 +1,54 @@
+# 📊 Benchmark Report - Automated Log File Analysis
 
-# 📊 Rapport de Benchmark - Analyse Automatisée des Fichiers de Log
+This is an English translation of the great French-language repository [here](https://github.com/DCx14/sysbench-graph-report) by [@DCx14](https://github.com/DCx14/).
 
-Ce projet propose un script Python permettant d'analyser automatiquement des fichiers de log issus de benchmarks, d'en extraire des métriques essentielles, et de générer un rapport interactif en HTML avec des graphiques.
 
-## 🚀 Fonctionnalités
+This project offers a Python script that automatically analyzes log files from benchmarks, extracts essential metrics, and generates an interactive HTML report with graphs.
 
-- **Extraction des Données :** 
-  - Parcourt tous les fichiers `.log` dans un répertoire donné.
-  - Identifie automatiquement le type de charge (OLTP Read Only, OLTP Write Only, etc.).
-  - Extrait des métriques clés : nombre total de requêtes, transactions, latences (min, moy, max), événements par seconde, etc.
+## 🚀 Features
 
-- **Génération de Graphiques :**
-  - Crée des graphiques interactifs pour chaque type de charge.
-  - Compare les différentes métriques extraites pour chaque fichier de log.
+- **Data Extraction:**
+  - Scans all `.log` files in a given directory.
+  - Automatically identifies the load type (OLTP Read Only, OLTP Write Only, etc.).
+  - Extracts key metrics: total number of queries, transactions, latencies (min, avg, max), events per second, etc.
 
-- **Rapport HTML :**
-  - Compile tous les graphiques dans un rapport HTML prêt à être consulté dans un navigateur.
+- **Graph Generation:**
+  - Creates interactive graphs for each load type.
+  - Compares the different metrics extracted for each log file.
 
-## 🛠️ Prérequis
+- **HTML Report:**
+  - Compiles all graphs into an HTML report ready to be viewed in a browser.
 
-Avant d'exécuter le script, assurez-vous d'avoir installé :
+## 🛠️ Prerequisites
+
+Before running the script, make sure you have installed:
 
 - **Python 3.x**
-- **Bibliothèques Python :**
-  - `pandas` pour la manipulation des données.
-  - `plotly` pour la génération des graphiques interactifs.
+- **Python Libraries:**
+  - `pandas` for data manipulation.
+  - `plotly` for generating interactive graphs.
 
 ```bash
 pip3 install pandas plotly
 ```
 
-## 📂 Structure du Répertoire
+## 📂 Directory Structure
 
-- `votre_script.py` : Le script principal pour l'extraction et l'analyse.
-- `data_extracted.csv` : Fichier CSV généré contenant les données extraites.
-- `report.html` : Rapport HTML interactif avec les graphiques pour chaque type de charge.
+- `your_script.py`: The main script for extraction and analysis.
+- `data_extracted.csv`: Generated CSV file containing the extracted data.
+- `report.html`: Interactive HTML report with graphs for each load type.
 
-## 📝 Instructions d'Utilisation
+## 📝 Usage Instructions
 
-1. **Préparation :**
-   - Placez vos fichiers `.log` dans le même répertoire que le script ou modifiez la variable `LOG_DIR` pour spécifier un autre répertoire.
+1. **Preparation:**
+   - Place your `.log` files in the same directory as the script or modify the `LOG_DIR` variable to specify another directory.
 
-2. **Exécution du Script :**
+2. **Running the Script:**
 
-   - placer vos fichier de log de sysbench sous ce format :
+   - Place your sysbench log files in this format:
   
      ```bash
-      oltp_update_non_index  ## attention changer par le oltp testé
+      oltp_update_non_index  ## make sure to change to the tested oltp
       SQL statistics:
           queries performed:
               read:                            0
@@ -75,34 +77,33 @@ pip3 install pandas plotly
           execution time (avg/stddev):   60.0005/0.00
      ```
 
-   - Lancez le script en utilisant la commande suivante :
+   - Run the script using the following command:
      ```bash
-     ./votre_script.py
+     ./your_script.py
      ```
-   - Un fichier `data_extracted.csv` sera généré avec les données extraites.
+   - A `data_extracted.csv` file will be generated with the extracted data.
   
-     
-4. **Génération du Rapport :**
-   - Le script produit également un fichier `report.html` contenant un rapport interactif avec des graphiques. Vous pouvez l'ouvrir directement dans votre navigateur préféré.
+4. **Generating the Report:**
+   - The script also produces a `report.html` file containing an interactive report with graphs. You can open it directly in your preferred browser.
 
 ![](https://i.imgur.com/T2ts60J.png)
 
-## ⚙️ Personnalisation
+## ⚙️ Customization
 
-- **Répertoire des Logs :**
-  - Modifiez la variable `LOG_DIR` dans le script pour changer le répertoire contenant les fichiers logs.
+- **Log Directory:**
+  - Modify the `LOG_DIR` variable in the script to change the directory containing the log files.
 
-- **Types de Charges :**
-  - Le script détecte plusieurs types de charges (OLTP Read Only, OLTP Write Only, etc.). Si vos logs contiennent des types de charges différents, ajustez les conditions dans la section correspondante du script.
+- **Load Types:**
+  - The script detects several load types (OLTP Read Only, OLTP Write Only, etc.). If your logs contain different load types, adjust the conditions in the corresponding section of the script.
 
 ## 🤝 Contributions
 
-Les contributions sont les bienvenues ! Si vous avez des idées d'amélioration, n'hésitez pas à ouvrir une issue ou à soumettre une pull request.
+Contributions are welcome! If you have improvement ideas, feel free to open an issue or submit a pull request.
 
-## 📄 Licence
+## 📄 License
 
-Ce projet est sous licence MIT. Vous êtes libre de l'utiliser, de le modifier et de le distribuer comme bon vous semble.
+This project is licensed under the MIT License. You are free to use, modify, and distribute it as you see fit.
 
 ---
 
-*Merci d'utiliser cet outil pour vos analyses de benchmarks !* 🎉
+*Thank you for using this tool for your benchmark analyses!* 🎉
