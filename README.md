@@ -29,12 +29,12 @@ Before running the script, make sure you have installed:
   - `plotly` for generating interactive graphs.
 
 ```bash
-pip3 install pandas plotly
+pip3 install -r requirements.txt
 ```
 
 ## 📂 Directory Structure
 
-- `your_script.py`: The main script for extraction and analysis.
+- `kbench.py`: The main script for extraction and analysis.
 - `data_extracted.csv`: Generated CSV file containing the extracted data.
 - `report.html`: Interactive HTML report with graphs for each load type.
 
@@ -79,7 +79,7 @@ pip3 install pandas plotly
 
    - Run the script using the following command:
      ```bash
-     ./your_script.py
+     ./kbench.py
      ```
    - A `data_extracted.csv` file will be generated with the extracted data.
   

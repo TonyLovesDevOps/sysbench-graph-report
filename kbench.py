@@ -160,7 +160,7 @@ html_content = """
     <h1>Benchmark Report</h1>
     <div class="summary">
         <h2>Summary</h2>
-        <p>This report presents the benchmark results extracted from log files, grouped by load type. The graphs below show the comparison of different metrics[...]
+        <p>This report presents the benchmark results extracted from log files, grouped by load type. The graphs below show the comparison of different metrics.</p>
     </div>
 """
 
