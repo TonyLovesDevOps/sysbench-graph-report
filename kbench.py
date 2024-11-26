@@ -85,13 +85,8 @@ for load_type in types_of_load:
     fig = go.Figure()
 
     metrics = [
-        ('Total Queries', 'Total Queries'),
-        ('Transactions', 'Transactions'),
-        ('Queries Read', 'Queries Read'),
         ('Events/s', 'Events/s'),
-        ('Min Latency', 'Min Latency'),
         ('Avg Latency', 'Avg Latency'),
-        ('Max Latency', 'Max Latency'),
         ('95th Percentile', '95th Percentile')
     ]
 
